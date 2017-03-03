@@ -1,0 +1,48 @@
+<table>
+	<thead>
+		<tr>
+			<th></th>
+			<th>
+				<a href="characters?sort=name">
+					Name
+				</a>
+			</th>
+			<th>
+				<a href="characters?sort=height">
+					Height
+				</a>
+			</th>
+			<th>
+				<a href="characters?sort=mass">
+					Mass
+				</a>
+			</th>
+			<th>JSON</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% !data || !data.length ? '' : data.forEach(function(character, i){ %>
+			<tr>
+				<td>
+					<%= i + 1 %>
+				</td>
+				<td>
+					<a href='/character/<%= character.name.toLowerCase() %>'>
+						<%= character.name %>
+					</a>
+				</td>
+				<td>
+					<%= character.height %>
+				</td>
+				<td>
+					<%= character.mass %>
+				</td>
+				<td>
+					<pre>
+						<%- JSON.stringify(character, null, 2) %>
+					</pre>
+				</td>
+			</tr>
+		<% }) %>
+	</tbody>
+</table>

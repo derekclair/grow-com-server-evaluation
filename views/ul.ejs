@@ -1,0 +1,13 @@
+<ul>
+ <% !data || !data.length ? '' : data.forEach(function(character){ %>
+	 <li>
+		 <a href='character/<%= character.name %>'>
+			 <!-- View -->
+			 <%= character.name %>
+		 </a>
+		 <pre>
+		 <%- JSON.stringify(character, null, 2) %>
+		 </pre>
+	 </li>
+ <% }) %>
+</ul>
