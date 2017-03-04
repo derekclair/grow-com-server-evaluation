@@ -1,1 +1,1 @@
-web: node --harmony --use_strict bin/web/server.js
+web: node --harmony --use_strict server.js
