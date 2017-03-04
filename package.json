@@ -14,6 +14,7 @@
   },
   "main": "server.js",
   "scripts": {
+		"heroku-prebuild": "babel lib -d dist",
 		"start": "nodemon lib/server.js --exec babel-node",
 		"build": "babel lib -d dist",
 		"serve": "node dist/server.js",
