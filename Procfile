@@ -1,2 +1,1 @@
-npm run-script build
-web: npm run-script serve
+web: node --harmony --use_strict server.js
