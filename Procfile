@@ -1,2 +1,1 @@
-app: npm run-script build
-web: node dist/server.js
+web: npm run-script build node dist/server.js
