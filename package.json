@@ -14,9 +14,11 @@
   },
   "main": "server.js",
   "scripts": {
+		"start": "nodemon ./server.js --exec babel-node --presets es2015,stage-2",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint ."
   },
+	"homepage": "https://grow-com-server.herokuapp.com",
   "author": "Derek Clair<derek@derekclair.com>",
   "license": "ISC",
   "dependencies": {

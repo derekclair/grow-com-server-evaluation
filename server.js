@@ -14,8 +14,9 @@ const router = express.Router();
 app.listen(3000);
 
 
-/* Set the view engine to EJS. */
+/* Set the view engine to EJS, and their path to the relative directory. */
 app.set('view engine', 'ejs');
+app.set('views', `${__dirname}/views`);
 
 
 /* Connect the Express router middleware to the app. */
@@ -58,7 +59,7 @@ router.route('/characters').get(async ({ query }, res, next) => {
 
 	const addToSet = ({ results }) => results.forEach((char) => data.push(char));
 
-	for (let page = 1; data.length < 50; page++) {
+	for (let page = 1; data.length < 50; page += 1) {
 		await rp({
 			url: 'http://swapi.co/api/people/',
 			qs: { page },

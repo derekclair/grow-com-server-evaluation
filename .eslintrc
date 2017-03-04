@@ -8,17 +8,10 @@
   parser: 'babel-eslint',
   sourceType: 'module',
   extends: [
-    'airbnb',
-		'plugin:meteor/recommended',
-		'plugin:react/recommended',
+    'airbnb-base',
   ],
   plugins: [
-    'babel',
-    'graphql',
     'import',
-    'jsx-a11y',
-    'meteor',
-    'react',
   ],
 
 	# settings: {
@@ -77,7 +70,6 @@
 
 
     ###################################################################### BABEL
-    babel/object-shorthand: 1,
 
 
 		##################################################################### IMPORT
