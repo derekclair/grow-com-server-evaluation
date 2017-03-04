@@ -50,7 +50,7 @@ router.route('/').get((req, res) => res.render('index'));
 	NOTE: must resolve query parameter "sort",
 				by the following properties: 'name', 'height', 'mass'
 *******************************************************************************/
-router.route('/characters').get(async ({ query }, res, next) => {
+router.route('/characters').get(async function ({ query }, res, next) {
 	let data = [];
 
 	const addToSet = ({ results }) => results.forEach((char) => data.push(char));
@@ -98,7 +98,7 @@ router.route('/characters').get(async ({ query }, res, next) => {
 
 	NOTE: must resolve for the following: 'luke'(1), 'han'(14), 'leia'(5), 'rey'(85)
 *******************************************************************************/
-router.route('/character/:name').get(async ({ params }, res, next) => {
+router.route('/character/:name').get(async function ({ params }, res, next) {
 	if (!params || !params.name) { next(); }
 
 	let { name } = params;
@@ -147,7 +147,7 @@ router.route('/character/:name').get(async ({ params }, res, next) => {
 	NOTE: returns an Object with "planet name" as properties, with vaules of
 				an Array containing that planets residents.
 *******************************************************************************/
-router.route('/planetresidents').get(async (req, res, next) => {
+router.route('/planetresidents').get(async function (req, res, next) {
 	const data = {};
 
 	await rp({
