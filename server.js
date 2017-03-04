@@ -5,6 +5,8 @@ import express from 'express';
 import rp from 'request-promise';
 import sortBy from 'lodash.sortby';
 
+// import table from './views/table.ejs';
+
 const app = express();
 const router = express.Router();
 
@@ -20,17 +22,16 @@ app.set('view engine', 'ejs');
 app.use(router);
 
 
+/* Send the ~/public folder to the client for CSS style link */
+app.use(express.static('public'));
+
+
 /*******************************************************************************
 	URL: http://localhost:3000/
 
 	Root url declaration, rendering the ~/index.ejs template
 *******************************************************************************/
-const options = {
-	table: null,
-	stringify: null,
-};
-
-router.route('/').get((req, res) => res.render('index', options));
+router.route('/').get((req, res) => res.render('index'));
 
 
 /*******************************************************************************
@@ -52,7 +53,7 @@ router.route('/').get((req, res) => res.render('index', options));
 	NOTE: must resolve query parameter "sort",
 				by the following properties: 'name', 'height', 'mass'
 *******************************************************************************/
-router.route('/characters').get(async ({ query }, res) => {
+router.route('/characters').get(async ({ query }, res, next) => {
 	let data = [];
 
 	const addToSet = ({ results }) => results.forEach((char) => data.push(char));
@@ -73,7 +74,10 @@ router.route('/characters').get(async ({ query }, res) => {
 		})), query.sort);
 	}
 
-	res.render('index', { ...options, table: true, data });
+	res.render('table', { data }); // table of data
+	// res.send(data); // raw response
+
+	// next();
 });
 
 
@@ -87,6 +91,7 @@ router.route('/characters').get(async ({ query }, res) => {
 router.route('/character/:name').get(async ({ params }, res, next) => {
 	if (!params || !params.name) { next(); }
 
+	let { name } = params;
 	const cheap = {
 		luke: 1,
 		han: 14,
@@ -94,13 +99,25 @@ router.route('/character/:name').get(async ({ params }, res, next) => {
 		rey: 85,
 	};
 
-	const data = await rp({
-		url: `http://swapi.co/api/people/${cheap[params.name]}`,
-		json: true,
-	});
+	// NOTE: this is a very "cheap" way to accomplish the same as a first name
+	// 			 query. It utilizes the 'search' API to essentially return the
+	// 			 same response.
+	if (!cheap[name]) {
+		// Query for the character by their first name, using ' ' as delimiter.
+		if (name.includes('')) { name = name.slice(0, name.indexOf(' ')); }
 
-	// res.render('index', { ...options, stringify: true, data });
-	res.render('stringify', { data });
+		// This is to resolve the only duplicae first name conflict; between
+		// Darth Vader & Darth Maul.
+		if (name === 'darth') { name = params.name.slice(5); }
+	}
+
+	const data = await rp({
+		url: `http://swapi.co/api/people/${cheap[name] || `?search=${name}`}`,
+		json: true,
+	}).then((response) => (cheap[name] ? response : response.results[0]));
+
+	res.render('character', { ...data });
+	// res.send(data); // raw response
 
 	next();
 });
@@ -127,7 +144,6 @@ router.route('/planetresidents').get(async (req, res, next) => {
 		data[name] = residents
 	)));
 
-	// res.render('index', { ...options, stringify: true, data });
 	res.render('stringify', { data });
 
 	next();

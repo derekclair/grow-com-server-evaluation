@@ -11,7 +11,7 @@ Google: "node express app"
 
 [1st article](https://zellwk.com/blog/crud-express-mongodb/) 
 
-@:30min init repository
+@0:30min init repository
 
 @1:30 had some issues with my local `eslint` configuration(s) that took some (a lot) of time to resolve. This is a simpler deployment than I've previously dealt with, which required some homework on the fundamental workings of the babel and it's integration with eslint in my local IDE.
 
@@ -25,6 +25,14 @@ Make some request and map the swapi's.
 
 I'll pick-up in the morning with the sorting and refine the views.
 
-@+-6:00 I've got all the server end points finished, and tried to get EJS to render children templates with the different responses. Ended up scapping the effort after about >1/hr of no results. Couldn't really justify the investment it seemed to require.
+@6:00 +- I've got all the server end points finished, and tried to get EJS to render children templates with the different responses. Ended up scrapping the effort after about >1/hr of no results. Couldn't really justify the investment it seemed to require.
 
-I  questioned wheter or not it would be ok to manipulate the "unknown" height & mass values to a NaN to accurately sort by those properties.
+I  questioned whether or not it would be ok to manipulate the "unknown" height & mass values to a NaN to accurately sort by those properties.
+
+#### Afterward
+
+I realized after I sent the email that I mis-read the requirement for a basic UI on the character. So I added one. I also realized that I couldn't live with the links I build in the table not actually resolving. So I implemented a really cheap (probably cheating), method to resolve the query using the search API's.
+
+I also couldn't drop the EJS templating I was struggling with, so I revisited them, did some YouTube browsing and found, what I'll agree to be, an acceptable implementation.
+
+Which pushes the total time spent on this evaluation to approximately 8hrs.
