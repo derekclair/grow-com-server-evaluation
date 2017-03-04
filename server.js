@@ -1,5 +1,13 @@
 'use strict';
 
+require('babel-core/register');
+require('babel-polyfill');
+
+
+var express = require('express');
+var rp = require('request-promise');
+var sortBy = require('lodash.sortby');
+
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
@@ -8,20 +16,14 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 /* eslint new-cap: 0 */
 
-var express = require('express');
-var rp = require('request-promise');
-var sortBy = require('lodash.sortby');
-
-require('babel-core/register');
-require('babel-polyfill');
-
 // import table from './views/table.ejs';
 
 var app = express();
 var router = express.Router();
 
 /* App will run on port 3000 [http://localhost:3000] */
-app.listen(3000);
+app.set('port', (process.env.PORT || 3000));
+app.listen(app.get('port'));
 
 /* Set the view engine to EJS, and their path to the relative directory. */
 app.set('view engine', 'ejs');
