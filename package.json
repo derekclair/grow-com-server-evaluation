@@ -1,5 +1,5 @@
 {
-  "name": "grow-com",
+  "name": "grow-com-server-evaluation",
   "version": "1.0.0",
   "description": "Competency evaluation for Grow.com; building a basic Nodejs app using Express to connect to the swapi.co API's.",
   "engines": {
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/derekclair/grow-com-server.git"
+    "url": "git+https://github.com/derekclair/grow-com-server-evaluation.git"
   },
   "main": "server.js",
   "scripts": {
