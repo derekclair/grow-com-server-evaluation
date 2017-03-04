@@ -24,7 +24,7 @@ app.use(router);
 
 
 /* Send the ~/public folder to the client for CSS style link */
-app.use(express.static('public'));
+app.use(express.static(`${__dirname}/public`));
 
 
 /*******************************************************************************
