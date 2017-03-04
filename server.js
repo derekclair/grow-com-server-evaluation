@@ -1,9 +1,8 @@
 /* eslint new-cap: 0 */
 
-import express from 'express';
-// import swapi from 'swapi-node'; // NOTE: npm package
-import rp from 'request-promise';
-import sortBy from 'lodash.sortby';
+const express = require('express');
+const rp = require('request-promise');
+const sortBy = require('lodash.sortby');
 
 // import table from './views/table.ejs';
 
